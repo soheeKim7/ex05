@@ -56,6 +56,7 @@
 		//파일의 확장자 제한, 파일 크기 제한 
 		var maxSize=5242880; //5MB =1024*1024*5
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		
 			
 		//확인을 위한 파일이름, 파일사이즈를 넣어주면 확인해서 true,false 리턴
 		function checkExtension(fileName,fileSize){
@@ -68,7 +69,7 @@
 					return false;
 				}
 				return true;				
-			}
+		}//checkExtension
 		
 		
 	});//document

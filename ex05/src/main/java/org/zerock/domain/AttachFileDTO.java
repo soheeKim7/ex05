@@ -10,6 +10,8 @@ public class AttachFileDTO {
 	//이미지 여부
 	private boolean image;
 	
+	
+	
 	public String getFileName() {
 		return fileName;
 	}

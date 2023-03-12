@@ -71,20 +71,40 @@
 					//alert("ajax로 처리된 결과"+result);
 					//받아온 내용을 가지고 작업
 					
-					var str2 ="";    //선언안하면 undefined 문자가 합쳐져서 나오게 됨!
+					var resultHtml ="";    //선언안하면 undefined 문자가 합쳐져서 나오게 됨!
 					for(var i=0;i<result.length;i++){
 						console.log("일반for문 이용시!!!!");
-						console.log(i,result[i].fileName);
-						//var name=result[i].fileName;
-						//$("#uploadResult").append(name);
-						var str = "<img src='/resources/list.jpg' width='25'>"+ "<li>"+ result[i].fileName + "</li>";
-						$("ul").append(str);
-						$("ol").append(str);						
-						
-						str2 += "<img src='/resources/list.jpg' width='100px'>"+ (i+1)+". "+result[i].fileName + "<br>";
-						$("#uploadResult").html(str2);
+						/*
+							console.log(i,result[i].fileName);
+							var name=result[i].fileName;
+							$("#uploadResult").append(name);
+							var str = "<img src='/resources/list.jpg' width='25'>"+ "<li>"+ result[i].fileName + "</li>";
+							$("ul").append(str);
+							$("ol").append(str);						
+						*/
+						/*
+						var fileURL=result[i].uploadPath+"/"+result[i].uuid+"_"+result[i].fileName;	 //썸 붙인거 말고, 원본파일 ex> 23/03/10/uuid+이름
+						if(result[i].image){ 	//이미지일 경우
+							var thumbnailURL=result[i].uploadPath+"/thumb_"+result[i].uuid+"_"+result[i].fileName;	
+							resultHtml += "<a href='/display?fileName="+fileURL+"'><img src='/display?fileName="+thumbnailURL+"' height='100px' > </a>"+ (i+1)+". "+result[i].fileName + "<br>";
+						}else{
+							var file
+							resultHtml += "<a href='/display?fileName="+fileURL+"'><img src='/resources/파일.png' width='100px'> </a>"+ (i+1)+". "+result[i].fileName + "<br>";							
+						}
+						*/
+						var fileURL=result[i].uploadPath+"/"+result[i].uuid+"_"+result[i].fileName;	 //썸 붙인거 말고, 원본파일 ex> 23/03/10/uuid+이름
+						if(result[i].image){ 	//이미지일 경우
+							var thumbnailURL=result[i].uploadPath+"/thumb_"+result[i].uuid+"_"+result[i].fileName;	
+							resultHtml += "<a href='/download?fileName="+fileURL+"'><img src='/display?fileName="+thumbnailURL+"' height='100px' > </a>"+ (i+1)+". "+result[i].fileName + "<br>";
+						}else{
+							var file
+							resultHtml += "<a href='/download?fileName="+fileURL+"'><img src='/resources/파일.png' width='100px'> </a>"+ (i+1)+". "+result[i].fileName + "<br>";							
+						}	
 						
 					}
+					$("#uploadResult").html(resultHtml);
+					
+					/*
 					//자바스크립트의 forEach
 					result.forEach(function(data,index){	// 객체, index
 						console.log("JS(자바스크립트)의 forEach 이용시!!!!");
@@ -95,9 +115,8 @@
 					$(result).each(function(index,data){	//  index, 객체
 						console.log("ajax의 each 이용시!!!!");
 						console.log(index,data.fileName);
-					});
-					
-					
+					});					
+					*/
 					
 					//선택한 파일 초기화(원래대로 돌리기)
 					$("span").html(cloneObj.html());					

@@ -54,7 +54,7 @@ public class ApiController {
 		System.out.println("몇글자니??"+"2023/03/10/9d162ca3-128e-4812-bd8f-eba090964c06_".length());  //48글자
 		//한글파일 문제 해결
 		String reDownloadFileName=new String(downloadFileName.getBytes("UTF-8"),"ISO-8859-1");
-		//downloadFileName.getBytes("UTF-8") ->ownloadFileName의 바이트를 가져오는데 utf-8로 인코딩해서 가져오라는 뜻
+		//downloadFileName.getBytes("UTF-8") ->downloadFileName의 바이트를 가져오는데 utf-8로 인코딩해서 가져오라는 뜻
 		//new String(바이트의배열, 인코딩형식) ->바이트배열을 해당인코딩형식으로 만들어준다! 의미
 		//ISO-8859-1 이건 영어인데
 		//한글로 인코딩할걸, 다시 영어로 인코딩해서 보내면, 브라우저에서 알아서 내부적으로 한글임을 눈치채고 한글로 보여줌!
@@ -99,11 +99,7 @@ public class ApiController {
 		ResponseEntity<byte[]> result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file),header,HttpStatus.OK );
 		
 		return result;
-		
 	}
-	
-	
-	
 	
 	@PostMapping("uploadAjaxAction")
 	//@ResponseBody   //jsp파일을 여는게 아니라 데이터로 응답을 하겠다(즉 restcontroller 와 같은 기능)
